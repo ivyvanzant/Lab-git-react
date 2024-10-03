@@ -43,6 +43,10 @@ app.use(express.json());
     ]
   };
 
+  app.get("/", (req, res) => {
+    res.send("Welcome to the User API!");
+  });
+
   app.get("/users", (req, res) => {
     const name = req.query.name;
     const job = req.query.job;
