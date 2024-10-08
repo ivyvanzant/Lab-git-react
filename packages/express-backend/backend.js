@@ -43,6 +43,11 @@ app.use(express.json());
     ]
   };
 
+  function generateUniqueId() {
+    return Date.now().toString(36) + Math.random().toString(36).substr(2, 9);
+}
+
+
   app.get("/", (req, res) => {
     res.send("Welcome to the User API!");
   });
@@ -94,8 +99,15 @@ const addUser = (user) => {
 
 app.post("/users", (req, res) => {
   const userToAdd = req.body;
+  userToAdd.id = generateUniqueId();
   addUser(userToAdd);
-  res.send();
+  
+  res.status(201).send({
+    message: "Succesful User Insertion",
+    user: userToAdd
+
+  });
+
 });
 
 const deleteUser = (id) => {
