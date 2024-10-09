@@ -102,11 +102,9 @@ app.post("/users", (req, res) => {
   userToAdd.id = generateUniqueId();
   addUser(userToAdd);
   
-  res.status(201).send({
-    message: "Succesful User Insertion",
-    user: userToAdd
+  console.log("User added to the backend:", userToAdd);
 
-  });
+  res.status(201).send(userToAdd);
 
 });
 
@@ -124,9 +122,9 @@ app.delete("/users/:id", (req, res) => {
   const id = req.params.id;
   const success = deleteUser(id);
   if (success) {
-    res.status(200).send(`User with id ${id} deleted.`);
+    res.status(204).send();
   } else {
-    res.status(404).send("Resource not found.");
+    res.status(404).send({ message: "User not found." });
   }
 });
 

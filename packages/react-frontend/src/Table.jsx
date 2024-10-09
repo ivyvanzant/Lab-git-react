@@ -1,11 +1,11 @@
 // src/Table.jsx
-
 import React from "react";
 
 function TableHeader() {
   return (
     <thead>
       <tr>
+        <th>ID</th>
         <th>Name</th>
         <th>Job</th>
         <th>Remove</th>
@@ -15,20 +15,21 @@ function TableHeader() {
 }
 
 function TableBody(props) {
-  const rows = props.characterData.map((row, index) => {
+  const rows = props.characterData.map((row) => {
     return (
-      <tr key={index}>
+      <tr key={row.id}>
+        <td>{row.id}</td>
         <td>{row.name}</td>
         <td>{row.job}</td>
         <td>
-          <button onClick={() => props.removeCharacter(index)}>
+          <button onClick={() => props.removeCharacter(row.id)}>
             Delete
           </button>
         </td>
       </tr>
     );
-   }
-  );
+  });
+
   return (
       <tbody>
         {rows}
