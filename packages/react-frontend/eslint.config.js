@@ -36,3 +36,15 @@ export default [
     },
   },
 ]
+
+module.exports = {
+  extends: [
+    'eslint:recommended',
+    'plugin:react/recommended',
+    'prettier' // Add Prettier here
+  ],
+  plugins: ['prettier'],
+  rules: {
+    'prettier/prettier': 'error'
+  }
+};
